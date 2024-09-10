@@ -1,0 +1,148 @@
+[gd_scene load_steps=27 format=3 uid="uid://b7vv7dh20px4m"]
+
+[ext_resource type="Texture2D" uid="uid://b4p22eeodxi3w" path="res://Assets/Fierce Tooth/01-Idle/Idle 01.png" id="1_apkfd"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_j6bcn"]
+[ext_resource type="Texture2D" uid="uid://burwp7owsq2m1" path="res://Assets/Fierce Tooth/04-Fall/Fall 01.png" id="1_r1ikq"]
+[ext_resource type="Texture2D" uid="uid://dnftgremgxx12" path="res://Assets/Fierce Tooth/01-Idle/Idle 02.png" id="2_oom60"]
+[ext_resource type="Texture2D" uid="uid://csu77lx02yrqo" path="res://Assets/Fierce Tooth/01-Idle/Idle 03.png" id="3_ospyf"]
+[ext_resource type="Texture2D" uid="uid://duxdrqo0frxle" path="res://Assets/Fierce Tooth/01-Idle/Idle 04.png" id="4_pgsb6"]
+[ext_resource type="Texture2D" uid="uid://dgsftib0acbto" path="res://Assets/Fierce Tooth/01-Idle/Idle 05.png" id="5_gkpu5"]
+[ext_resource type="Texture2D" uid="uid://wpte1hqil0in" path="res://Assets/Fierce Tooth/01-Idle/Idle 06.png" id="6_l0aq0"]
+[ext_resource type="Texture2D" uid="uid://dp4qvvdx1xobl" path="res://Assets/Fierce Tooth/01-Idle/Idle 07.png" id="7_415jl"]
+[ext_resource type="Texture2D" uid="uid://bu5m60thjywe6" path="res://Assets/Fierce Tooth/01-Idle/Idle 08.png" id="8_ao84k"]
+[ext_resource type="Texture2D" uid="uid://bcpgy04h5atxn" path="res://Assets/Fierce Tooth/03-Jump/Jump 01.png" id="10_04342"]
+[ext_resource type="Texture2D" uid="uid://b0n0h7hm82fo6" path="res://Assets/Fierce Tooth/03-Jump/Jump 02.png" id="11_nsn4x"]
+[ext_resource type="Texture2D" uid="uid://d33dr8orbvddf" path="res://Assets/Fierce Tooth/03-Jump/Jump 03.png" id="12_0gra3"]
+[ext_resource type="Texture2D" uid="uid://bowlh1j74iwx1" path="res://Assets/Fierce Tooth/02-Run/Run 01.png" id="13_hoea4"]
+[ext_resource type="Texture2D" uid="uid://yrxg6wsvtqrp" path="res://Assets/Fierce Tooth/02-Run/Run 02.png" id="14_ml1b7"]
+[ext_resource type="Texture2D" uid="uid://ba3dhfpuiachq" path="res://Assets/Fierce Tooth/02-Run/Run 03.png" id="15_diq76"]
+[ext_resource type="Texture2D" uid="uid://berfg200mochv" path="res://Assets/Fierce Tooth/02-Run/Run 04.png" id="16_c7cfp"]
+[ext_resource type="Texture2D" uid="uid://cud755hod6xsa" path="res://Assets/Fierce Tooth/02-Run/Run 05.png" id="17_fvw2o"]
+[ext_resource type="Texture2D" uid="uid://c3vxpql7rbxvm" path="res://Assets/Fierce Tooth/02-Run/Run 06.png" id="18_dadgm"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="20_f744j"]
+[ext_resource type="Script" path="res://Scripts/IdleState.gd" id="21_b4l6e"]
+[ext_resource type="Script" path="res://Scripts/RunningState.gd" id="22_u43rf"]
+[ext_resource type="Script" path="res://Scripts/JumpingState.gd" id="23_iuv46"]
+[ext_resource type="Script" path="res://Scripts/FallingState.gd" id="24_u3dt8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6bpn"]
+size = Vector2(17, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8x5ll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r1ikq")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_apkfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_oom60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ospyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pgsb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gkpu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l0aq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_415jl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ao84k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_04342")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nsn4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0gra3")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_hoea4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ml1b7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_diq76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_c7cfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_fvw2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dadgm")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_j6bcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_i6bpn")
+
+[node name="AnimationPlayer" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_8x5ll")
+animation = &"idle"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.851848
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("20_f744j")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("21_b4l6e")
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource("22_u43rf")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("23_iuv46")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("24_u3dt8")
+
+[node name="StateText" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -20.0
+offset_top = -28.0
+offset_right = 20.0
+offset_bottom = -14.0
+theme_override_font_sizes/font_size = 10
+text = "IDLE"
+horizontal_alignment = 1
+vertical_alignment = 1
